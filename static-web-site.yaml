@@ -4,7 +4,7 @@ metadata:
   name: example-website
   namespace: example-website-app
   labels:
-    app: example-website-deployment
+    app: example-website
 spec:
   replicas: 1
   selector:
