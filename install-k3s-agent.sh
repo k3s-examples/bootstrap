@@ -13,9 +13,9 @@ if [ ! -z ${NEW_NODE_NAME} ]; then
 fi
 
 
-read -p "Enter master node URL (http://some.dns:6443)> " MASTER_URL
-read -p "Enter master node TOKEN> " MASTER_TOKEN
+read -p "Enter master node URL (http://some.dns:6443)> " CLUSTER_REGISTRATION_SERVER_URL
+read -p "Enter master node TOKEN> " CLUSTER_REGISTRATION_TOKEN
 read -p "Enter master node LABEL> " NODE_LABEL
 
 
-curl -sfL https://get.k3s.io | sh -s - agent --token ${MASTER_TOKEN} --server ${MASTER_URL} --node-label ${NODE_LABEL}
+curl -sfL https://get.k3s.io | sh -s - agent --token ${MASTER_TOKEN} --server ${CLUSTER_REGISTRATION_SERVER_URL} --node-label ${NODE_LABEL}
