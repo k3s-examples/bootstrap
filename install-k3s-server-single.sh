@@ -18,7 +18,7 @@ DISABLE_TRAEFIK_FLAG="--disable traefik"
 
 if [ ${REPLACE_DEFAULT_INGRESS} != "n" ]; then
     echo "Installing k3s server"
-    curl -sfL https://get.k3s.io | sh -s - --write-kubeconfig-mode 644 --disable traefik
+    curl -sfL https://get.k3s.io | sh -s - server --write-kubeconfig-mode 644 --disable traefik
     echo "Waiting for server to become ready (120 seconds)"
     sleep 120
     echo "Installing nginx ingress controller"
