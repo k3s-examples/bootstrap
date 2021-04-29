@@ -8,17 +8,17 @@ NODE_NAME=$(hostname)
 read -p "Enter server name ($(hostname))" NODE_NAME
 if [ ! -z ${NODE_NAME} ] && [ ${NODE_NAME} != $(hostname) ]; then
     hostnamectl set-hostname ${NODE_NAME}
+    read -p "System will change ..."
+    reboot now
 fi
 
 REPLACE_DEFAULT_INGRESS=y
 read -p "Do you want to replace traefik ingress controller with nginx ingress controller? (y/n) default y ? " REPLACE_DEFAULT_INGRESS
 [ -z $REPLACE_DEFAULT_INGRESS ] && REPLACE_DEFAULT_INGRESS=y
-DISABLE_TRAEFIK_FLAG="--disable traefik"
-[ $REPLACE_DEFAULT_INGRESS == "n" ] && DISABLE_TRAEFIK_FLAG=""
 
 if [ ${REPLACE_DEFAULT_INGRESS} != "n" ]; then
     echo "Installing k3s server"
-    curl -sfL https://get.k3s.io | sh -s - server --write-kubeconfig-mode 644 --disable traefik
+    curl -sfL https://get.k3s.io | K3S_NODE_NAME=${NODE_NAME} sh -s - server --disable traefik
     echo "Waiting for server to become ready (120 seconds)"
     sleep 120
     echo "Installing nginx ingress controller"
@@ -39,7 +39,7 @@ EOF
 
     rm $TMP_FILE
 else
-    curl -sfL https://get.k3s.io | sh -s - server --node-name ${NODE_NAME} --write-kubeconfig-mode 644
+    curl -sfL https://get.k3s.io | K3S_NODE_NAME=${NODE_NAME} sh -s - server
 fi
 
 
