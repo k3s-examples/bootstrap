@@ -15,7 +15,7 @@ fi
 
 read -p "Enter master node URL (https://some.dns:6443) > " CLUSTER_REGISTRATION_SERVER_URL
 read -p "Enter master node TOKEN > " CLUSTER_REGISTRATION_TOKEN
-read -p "Enter node LABEL (key=value) > " AGENT_LABEL
+read -p "Enter node LABEL (key=value) (leave empty to skip)> " AGENT_LABEL
 
 if [ -z ${AGENT_LABEL} ]; then
   curl -sfL https://get.k3s.io | sh -s - agent --token ${CLUSTER_REGISTRATION_TOKEN} --server ${CLUSTER_REGISTRATION_SERVER_URL}
