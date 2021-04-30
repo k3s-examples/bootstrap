@@ -4,9 +4,9 @@ I am a big fan of this product from Rancher. I have been using it for some time 
 # Single server cloud
 install-k3-server-single file helps prepare a server to become a master node in the cloud. Its quit simple with k3s...
 
-To start a new k3s master server you can run:
+To start a new k3s master server you need to have root privileges and run:
 ```
-curl -sfL https://raw.githubusercontent.com/k3s-examples/cluster-init/main/install-k3s-server-single.sh | sudo sh -
+curl -sfL https://raw.githubusercontent.com/k3s-examples/cluster-init/main/install-k3s-server-single.sh | sh -
 ```
 
 ### Setting host name
