@@ -11,6 +11,10 @@ Finaly a master is a server that is also the registration point of the cloud. If
 # Single server cloud
 install-k3-server-single file helps prepare a server to become a master node in the cloud. Its quit simple with k3s...
 
-to run this script login as root
+To start a new k3s master server you can run:
+```
+curl -sfL https://raw.githubusercontent.com/k3s-examples/cluster-init/main/install-k3s-server-single.sh | sudo sh -
+```
 
+The script will first ask for the name of the node. Default is the host name of the machine. k3s will turn the host name the name of the node in its cloud. So if you have several nodes in your cloud, its a good idea to give them different names... 
 

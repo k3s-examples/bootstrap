@@ -9,8 +9,6 @@ NODE_NAME=$(hostname)
 read -p "Enter server name ($(hostname))" NODE_NAME
 if [ ! -z ${NODE_NAME} ] && [ ${NODE_NAME} != $(hostname) ]; then
     hostnamectl set-hostname ${NODE_NAME}
-    read -p "System will change ..."
-    reboot now
 fi
 
 REPLACE_DEFAULT_INGRESS=y
