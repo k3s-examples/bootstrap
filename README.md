@@ -21,6 +21,13 @@ If you disable Traefik the script will install nginx ingress controller for you.
 
 At the end of the process the script prints out the new cloud token from k3s `cat /var/lib/rancher/k3s/server/token`
 
+### Follow cloud deployment progress
+
+It takes a little time for k3s to deploy the new cloud master node. To check the status type:
+` k3s kubectl get nodes `
+
+When all is ok you should see that the state of the node is `Ready`.
+
 ### Configuring your kubectl to work with the new cloud
 
 To view the configuration needed to connect to the new cloud, run on the node you just installed the command:
