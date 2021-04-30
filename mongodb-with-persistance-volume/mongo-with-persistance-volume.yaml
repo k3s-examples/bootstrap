@@ -12,11 +12,13 @@ metadata:
   labels:
     app: mongodb
 spec:
+  type: NodePort
   selector:
     app: mongodb
   ports:
   - port: 27017
     targetPort: 27017
+    nodePort: 30007
 ---
 apiVersion: apps/v1
 kind: StatefulSet
@@ -58,24 +60,3 @@ spec:
             storage: 30Gi      
 
 
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/rewrite-target: /$1
-  name: demo-db-ingress-rules
-  namespace: demo-db
-spec:
-  rules:
-  - host: www.dempdb.local
-    http:
-      paths:
-      - backend:
-          service: 
-            name: mongodb
-            port: 
-              number: 27017
-        path: /(.*)
-        pathType: Prefix        
