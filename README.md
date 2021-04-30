@@ -6,7 +6,7 @@ install-k3-server-single file helps prepare a server to become a master node in 
 
 To start a new k3s master server you need to have root privileges and run:
 ```
-source <(curl -sfL https://raw.githubusercontent.com/k3s-examples/cluster-init/main/install-k3s-server-single.sh)
+source <(curl -sfL https://raw.githubusercontent.com/k3s-examples/bootstrap/main/install-k3s-server-single.sh)
 ```
 
 ### Script steps
