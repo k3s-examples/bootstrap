@@ -17,7 +17,7 @@ read -p "Do you want to replace traefik ingress controller with nginx ingress co
 
 if [ ${REPLACE_DEFAULT_INGRESS} != "n" ]; then
     echo "Installing k3s server"
-    curl -sfL https://get.k3s.io | K3S_NODE_NAME=${NODE_NAME} sh -s - server --disable traefik
+    curl -sfL https://get.k3s.io | K3S_NODE_NAME=${NODE_NAME} sh -s - server --disable traefik --write-kubeconfig-mode "0644"
     echo "Waiting for server to become ready (120 seconds)"
     sleep 120
     echo "Installing nginx ingress controller"
@@ -38,7 +38,7 @@ EOF
 
     rm $TMP_FILE
 else
-    curl -sfL https://get.k3s.io | K3S_NODE_NAME=${NODE_NAME} sh -s - server
+    curl -sfL https://get.k3s.io | K3S_NODE_NAME=${NODE_NAME} sh -s - server --write-kubeconfig-mode "0644"
 fi
 
 
