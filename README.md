@@ -12,18 +12,19 @@ source <(curl -sfL https://raw.githubusercontent.com/k3s-examples/cluster-init/m
 ### Script steps
 
 #### Setting host name
-The script will first ask for the name of the node. Default is the host name of the machine. k3s will turn the host name the name of the node in its cloud. So if you have several nodes in your cloud, its a good idea to give them different names... 
+The script will first ask for a new host name (default current host name). k3s uses the host name as the node name in the cloud. If you have several nodes in your cloud, its a good idea to give them different names... 
 
 #### Disabling Traefik
-The script will ask if you want to change the default Traefik ingress controller. You would want to change the traefik ingress if you plan to use multiple servers cloud. For some technical reasons Traefik no logger support multi server cloud deployment on k3s. A real bummer. And since your yaml definitions should go all the way from develop to production, you need to deside on this, very early in your project. 
+The script will ask if you want to disable the default Traefik ingress controller. You would want to change the traefik ingress if you plan to use multiple servers cloud. For some technical reasons Traefik no logger support multi server cloud deployment on k3s. A real bummer. And since your yaml definitions should go all the way from develop to production, you need to deside on this, very early in your project. 
 
 > I always select to switch the Traefik with nginx ingress, so the default is Y to disable Traefik
 
 If you disable Traefik the script will install nginx ingress controller for you.
 
-At the end of the process the script prints out the new cloud token from k3s 
+#### Installation of k3s
 
-`cat /var/lib/rancher/k3s/server/token`
+You are all set for the installation. You should see the installation progress on screen. At the end of the installation the script printes out the new cloud token (taken from `/var/lib/rancher/k3s/server/token`)
+
 
 ### Follow cloud deployment progress
 
