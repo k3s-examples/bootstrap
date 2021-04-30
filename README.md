@@ -9,10 +9,12 @@ To start a new k3s master server you need to have root privileges and run:
 source <(curl -sfL https://raw.githubusercontent.com/k3s-examples/cluster-init/main/install-k3s-server-single.sh)
 ```
 
-### Setting host name
+### Script steps
+
+#### Setting host name
 The script will first ask for the name of the node. Default is the host name of the machine. k3s will turn the host name the name of the node in its cloud. So if you have several nodes in your cloud, its a good idea to give them different names... 
 
-### Disabling Traefik
+#### Disabling Traefik
 The script will ask if you want to change the default Traefik ingress controller. You would want to change the traefik ingress if you plan to use multiple servers cloud. For some technical reasons Traefik no logger support multi server cloud deployment on k3s. A real bummer. And since your yaml definitions should go all the way from develop to production, you need to deside on this, very early in your project. 
 
 > I always select to switch the Traefik with nginx ingress, so the default is Y to disable Traefik
