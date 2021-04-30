@@ -19,7 +19,9 @@ The script will ask if you want to change the default Traefik ingress controller
 
 If you disable Traefik the script will install nginx ingress controller for you.
 
-At the end of the process the script prints out the new cloud token from k3s `cat /var/lib/rancher/k3s/server/token`
+At the end of the process the script prints out the new cloud token from k3s 
+
+`cat /var/lib/rancher/k3s/server/token`
 
 ### Follow cloud deployment progress
 
