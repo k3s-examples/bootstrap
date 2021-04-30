@@ -8,5 +8,9 @@ Rancher made k3s deployment very easy and convinient, so I use their solution a 
 To make things clear, K8s uses the terms of manager and worker nodes in the cluster. k8s also make clears who is doing what (worker running the actual objects....). In k3s they use the term master,server and agent. Agent is the simplest, is can have the role of a worker kublet. A server has a role of worker and manager. This means that a server manage the work and running the k8s objects.
 Finaly a master is a server that is also the registration point of the cloud. If you define a cluster with several servers than one of them (the first you deploy) should be the master. The master holds a token to be used by the rest of the nodes to join the cloud...
 
+# Single server cloud
+install-k3-server-single file helps prepare a server to become a master node in the cloud. Its quit simple with k3s...
+
+to run this script login as root
 
 
