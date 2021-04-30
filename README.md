@@ -1,5 +1,5 @@
 # Getting started with k3s
-I am a big fan of this product from Rancher. I been using it for some time and it does the work for me and my team at develop/staging environments and soon in production.
+I am a big fan of this product from Rancher. I have been using it for some time and it does the work for me and my team at develop/staging environments and soon in production.
 
 Rancher made k3s deployment very easy and convinient, so I use their solution a lot. There for I create some quick scripts and demo (simple) YAML files to have a quick bootstrap when configuring a new service.
 
