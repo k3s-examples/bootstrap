@@ -26,7 +26,7 @@ metadata:
 spec:
   ports:
     - name: http
-      port: 80
+      port: 8080
       targetPort: 8080
   selector:
     app: quote
@@ -54,3 +54,9 @@ spec:
           image: docker.io/datawire/quote:0.4.1
           ports:
             - containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            failureThreshold: 1
+            periodSeconds: 5
