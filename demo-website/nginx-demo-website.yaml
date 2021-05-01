@@ -61,5 +61,5 @@ spec:
             name: demo-website-service
             port: 
               number: 2000
-        path: /(.*)
+        path: /
         pathType: Prefix        

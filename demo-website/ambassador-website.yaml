@@ -4,35 +4,18 @@ kind: Namespace
 metadata:
   name: demo-website
 
-# ---
-# apiVersion: getambassador.io/v2
-# kind: Mapping
-# metadata:
-#   name: quote-backend
-#   namespace: demo-website
-# spec:
-#   prefix: /give-me-a-quote/
-#   service: quote
-
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: getambassador.io/v2
+kind: Mapping
 metadata:
-  name: ambassador-ingress
+  name: quote-backend
   namespace: demo-website
 spec:
-  ingressClassName: ambassador
-  rules:
-  - http:
-      paths:
-        - path: /(.*)
-          pathType: Prefix
-          backend:
-            service:
-              name: quote
-              port:
-                number: 80
-    host: www.demowebsite.local
+  prefix: /api
+  prefix_regex: false
+  service: quote.demo-website
+  port: 80
+  
 
 ---
 apiVersion: v1
