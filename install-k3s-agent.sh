@@ -8,8 +8,6 @@ fi
 read -p "Enter agent host name ($(hostname))" NEW_NODE_NAME
 if [ ! -z ${NEW_NODE_NAME} ]; then
     hostnamectl set-hostname ${NEW_NODE_NAME}
-    read -p "System will change ..."
-    reboot now
 fi
 
 

@@ -46,7 +46,7 @@ metadata:
   name: quote
   namespace: demo-website-nginx
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: quote

@@ -90,7 +90,21 @@ users:
 
 ```
 
+# Install agent
+
+To install an agent make sure you have the token of the k3s cloud master server. The token can be found at `/var/lib/rancher/k3s/server/token` 
+
+Once you have the token login to the new node and under root privileges type
+```
+source <(curl -sfL https://raw.githubusercontent.com/k3s-examples/bootstrap/main/install-k3s-agent.sh)
+
+```
+
+
+
+
 # Terms and definitions used by k3s
 
 To make things clear, K8s uses the terms of manager and worker nodes in the cluster. k8s also make clears who is doing what (worker running the actual objects....). In k3s they use the term master,server and agent. Agent is the simplest, is can have the role of a worker kublet. A server has a role of worker and manager. This means that a server manage the work and running the k8s objects.
 Finaly a master is a server that is also the registration point of the cloud. If you define a cluster with several servers than one of them (the first you deploy) should be the master. The master holds a token to be used by the rest of the nodes to join the cloud...
+
