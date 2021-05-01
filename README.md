@@ -100,6 +100,11 @@ source <(curl -sfL https://raw.githubusercontent.com/k3s-examples/bootstrap/main
 
 ```
 
+### Script steps
+
+#### Setting host name
+The script will first ask for a new host name (default current host name). k3s uses the host name as the node name in the cloud. If you have several nodes in your cloud, its a good idea to give them different names... 
+
 
 
 
