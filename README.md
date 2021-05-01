@@ -105,6 +105,20 @@ source <(curl -sfL https://raw.githubusercontent.com/k3s-examples/bootstrap/main
 #### Setting host name
 The script will first ask for a new host name (default current host name). k3s uses the host name as the node name in the cloud. If you have several nodes in your cloud, its a good idea to give them different names... 
 
+#### Setting master k3s server
+Now you are asked for the master node. The node must be in the form of:
+`https://*.*.*.*:6433`
+
+
+#### Setting master k3s token
+Search for the token in the master node at `/var/lib/rancher/k3s/server/token`
+
+### Following cloud deployment progress
+
+It takes a little time for k3s to deploy the new cloud master node. To check the status type:
+` k3s kubectl get nodes `
+
+When all is ok you should see that the state of the node is `Ready`.
 
 
 
