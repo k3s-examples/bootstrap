@@ -1,0 +1,56 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: demo-website-ambassador
+
+---
+apiVersion: getambassador.io/v2
+kind: Mapping
+metadata:
+  name: quote-backend
+  namespace: demo-website-ambassador
+spec:
+  prefix: /api
+  prefix_regex: false
+  service: quote.demo-website
+  port: 80
+  
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: quote
+  namespace: demo-website-ambassador
+spec:
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
+  selector:
+    app: quote
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quote
+  namespace: demo-website-ambassador
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: quote
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      namespace: demo-website-ambassador
+      labels:
+        app: quote
+    spec:
+      containers:
+        - name: backend
+          image: docker.io/datawire/quote:0.4.1
+          ports:
+            - containerPort: 8080

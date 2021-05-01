@@ -2,31 +2,40 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: demo-website
+  name: demo-website-nginx
 
 ---
-apiVersion: getambassador.io/v2
-kind: Mapping
+apiVersion: networking.k8s.io/v1
+kind: Ingress
 metadata:
-  name: quote-backend
-  namespace: demo-website
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+  name: demo-website-ingress-rules
+  namespace: demo-website-nginx
 spec:
-  prefix: /api
-  prefix_regex: false
-  service: quote.demo-website
-  port: 80
-  
+  rules:
+  - host: nginx.demowebsite.local
+    http:
+      paths:
+      - backend:
+          service: 
+            name: quote
+            port: 
+              number: 8080
+        path: /(.*)
+        pathType: Prefix
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: quote
-  namespace: demo-website
+  namespace: demo-website-nginx
 spec:
   ports:
     - name: http
-      port: 80
+      port: 8080
       targetPort: 8080
   selector:
     app: quote
@@ -35,7 +44,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: quote
-  namespace: demo-website
+  namespace: demo-website-nginx
 spec:
   replicas: 1
   selector:
@@ -45,7 +54,7 @@ spec:
     type: RollingUpdate
   template:
     metadata:
-      namespace: demo-website
+      namespace: demo-website-nginx
       labels:
         app: quote
     spec:
