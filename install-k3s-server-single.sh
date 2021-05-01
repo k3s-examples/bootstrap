@@ -24,7 +24,7 @@ if [ ${REPLACE_DEFAULT_INGRESS} != "n" ]; then
     read -p "Which ingress controller would you like (nginx/amabassador) ? " INGRESS_CONTROLLER
     if [ ${INGRESS_CONTROLLER} == "nginx" ]; then
         echo "Installing nginx ingress controller"
-        kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/baremetal/deploy.yaml
+        kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.46.0/deploy/static/provider/cloud/deploy.yaml
         echo "Wating for the ingress to install (180 seconds)..."
         sleep 180
 
