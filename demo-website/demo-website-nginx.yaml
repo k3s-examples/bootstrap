@@ -60,7 +60,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: docker.io/datawire/quote:0.4.1
+          image: sagiforbes/echowebserver:latest
           ports:
             - containerPort: 8080
           livenessProbe:
