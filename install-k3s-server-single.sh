@@ -12,7 +12,7 @@ if [ ! -z ${NODE_NAME} ] && [ ${NODE_NAME} != $(hostname) ]; then
 fi
 
 REPLACE_DEFAULT_INGRESS=y
-read -p "Do you want to replace traefik ingress controller with nginx ingress controller? (y/n) default y ? " REPLACE_DEFAULT_INGRESS
+read -p "Do you want to replace traefik ingress controller with nginx/ambassador ingress controller? (y/n) default y ? " REPLACE_DEFAULT_INGRESS
 [ -z $REPLACE_DEFAULT_INGRESS ] && REPLACE_DEFAULT_INGRESS=y
 
 if [ ${REPLACE_DEFAULT_INGRESS} != "n" ]; then
