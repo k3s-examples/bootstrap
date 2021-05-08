@@ -18,6 +18,7 @@ read -p "Do you want to replace traefik ingress controller with nginx/ambassador
 if [ ${REPLACE_DEFAULT_INGRESS} != "n" ]; then
     echo "Installing k3s server"
     curl -sfL https://get.k3s.io | K3S_NODE_NAME=${NODE_NAME} sh -s - server --disable traefik --write-kubeconfig-mode "0644"
+    kubectl config view --raw
     echo "Waiting for server to become ready (120 seconds)"
     sleep 120
 
@@ -25,21 +26,9 @@ if [ ${REPLACE_DEFAULT_INGRESS} != "n" ]; then
     if [ ${INGRESS_CONTROLLER} == "nginx" ]; then
         echo "Installing nginx ingress controller"
         kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.46.0/deploy/static/provider/cloud/deploy.yaml
+        # kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.46.0/deploy/static/provider/baremetal/deploy.yaml
         echo "Wating for the ingress to install (180 seconds)..."
         sleep 180
-
-        TMP_FILE=ingress.yaml
-
-cat > $TMP_FILE <<EOF 
-spec:
-template:
-    spec:
-    hostNetwork: true
-EOF
-
-        kubectl patch deployment ingress-nginx-controller -n ingress-nginx --patch "$(cat ${TMP_FILE})"
-
-        rm $TMP_FILE
     fi
     if [ ${INGRESS_CONTROLLER} == "ambassador" ]; then
         kubectl apply -f https://www.getambassador.io/yaml/ambassador/ambassador-crds.yaml
