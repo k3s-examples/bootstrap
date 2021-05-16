@@ -9,3 +9,5 @@ echo "After dashboard deployed and gaining admin-user token you can see the dash
 echo "kubectl proxy"
 echo "Then open browser to:"
 echo "http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/."
+echo "If you applied dashboard-rbac-account, than dashboard token is:"
+kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep admin-user | awk '{print $1}')
